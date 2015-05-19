@@ -10,7 +10,12 @@
   $(document).swipeUp(function(){
 		if (isAnimating) return;
 		last = now;
-		if (last != 8) { now = last+1; pageMove(towards.up);}
+		if (last != 9) {
+			// if(last == 3){
+
+			// }
+			now = last+1; pageMove(towards.up);
+		}
 	})
 
 	$(document).swipeDown(function(){
@@ -42,7 +47,7 @@ function pageMove(tw){
 
 	setTimeout(function(){
 		$(lastPage).removeClass(outClass);
-		$(lastPage).addClass("hide");	
+		$(lastPage).addClass("hide");
 		$(nowPage).removeClass(inClass);
 
 		isAnimating = false;

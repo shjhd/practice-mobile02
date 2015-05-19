@@ -10,13 +10,13 @@
   $(document).swipeUp(function(){
 		if (isAnimating) return;
 		last = now;
-		if (last != 2) { now = last+1; pageMove(towards.up);}
+		if (last != 8) { now = last+1; pageMove(towards.up);}
 	})
 
 	$(document).swipeDown(function(){
 		if (isAnimating) return;
 		last = now;
-		if (last!=1) { now = last-1; pageMove(towards.down);}
+		if (last != 1) { now = last-1; pageMove(towards.down);}
 	})
 
 function pageMove(tw){
@@ -42,8 +42,7 @@ function pageMove(tw){
 
 	setTimeout(function(){
 		$(lastPage).removeClass(outClass);
-		$(lastPage).addClass("hide");
-
+		$(lastPage).addClass("hide");	
 		$(nowPage).removeClass(inClass);
 
 		isAnimating = false;

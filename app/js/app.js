@@ -10,11 +10,8 @@
   $(document).swipeUp(function(){
 		if (isAnimating) return;
 		last = now;
-		if (last != 9) {
-			// if(last == 3){
-
-			// }
-			now = last+1; pageMove(towards.up);
+		if (last != 9 && last != 3) {
+				now = last+1; pageMove(towards.up);
 		}
 	})
 
@@ -23,6 +20,26 @@
 		last = now;
 		if (last != 1) { now = last-1; pageMove(towards.down);}
 	})
+
+	$("#btn1").click(function(e){
+		e.preventDefault();
+		var age1=parseInt($('.input-1').val()),
+				age2=parseInt($('.input-2').val());
+		if(!(age1 > 10 && age1 < 80) || !(age2 > 10 && age2 < 80)){
+			return window.alert("请输入正确年龄！");
+		}
+		var differ = Math.abs(age1-age2),
+				$differfinger = $(".finger > div").empty();
+		for(var i =differ; i > 0;i--)
+			$('<span>'+ i +'</span>').appendTo($differfinger);
+		if(differ >= 18){
+			now = 5; pageMove(towards.up);
+		}
+		else{
+			now = 4; pageMove(towards.up);
+		}
+		$('.page-3').addClass('hide');
+	});
 
 function pageMove(tw){
 	var lastPage = ".page-"+last,

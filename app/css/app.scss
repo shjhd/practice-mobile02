@@ -369,6 +369,31 @@
 		bottom: 0;
 		left: 0;
 	}
+	.finger{
+		font-size: 36px;
+		font-family: mf_qingshu;
+		height: 36px;
+		line-height: 36px;
+		width: 72px;
+		z-index: 50;
+		color: #ef5482;
+		overflow: hidden;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -95px;
+		margin-top: 53px;
+		span{
+			display: block;
+			text-align: right;
+		}
+		.finger-age{
+			animation-duration: 1s;
+			-webkit-animation-duration: 1s;
+			animation-delay: 2s;
+			-webkit-animation-delay: 2s;
+		}
+	}
 }
 .page-5{
 	width: 100%;

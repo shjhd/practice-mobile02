@@ -1,7 +1,7 @@
 'use strict';
 
 (function($){
-	var now = 1,last =0;
+	var now = 1,last = 0,differ = 0;
 	const towards = {up:1,down:2};
 	var isAnimating = false;
 
@@ -18,7 +18,14 @@
 	$(document).swipeDown(function(){
 		if (isAnimating) return;
 		last = now;
-		if (last != 1) { now = last-1; pageMove(towards.down);}
+		if (last != 1) {
+			if(last == 5 && differ >=18 ){
+				now = last-2; pageMove(towards.down);
+			}
+			else{
+				now = last-1; pageMove(towards.down);
+			}
+		}
 	})
 
 	$("#btn1").click(function(e){
@@ -28,8 +35,8 @@
 		if(!(age1 > 10 && age1 < 80) || !(age2 > 10 && age2 < 80)){
 			return window.alert("请输入正确年龄！");
 		}
-		var differ = Math.abs(age1-age2),
-				$differfinger = $(".finger > div").empty();
+		differ = Math.abs(age1-age2);
+		var $differfinger = $(".finger > div").empty();
 		for(var i =differ; i > 0;i--)
 			$('<span>'+ i +'</span>').appendTo($differfinger);
 		if(differ >= 18){
@@ -39,11 +46,12 @@
 			now = 4; pageMove(towards.up);
 		}
 		$('.page-3').addClass('hide');
+		return differ;
 	});
 
 function pageMove(tw){
 	var lastPage = ".page-"+last,
-		nowPage = ".page-"+now;
+			nowPage = ".page-"+now;
 	var outClass,inClass;
 
 	switch(tw) {
@@ -57,15 +65,13 @@ function pageMove(tw){
 			break;
 	}
 	isAnimating = true;
-	$(nowPage).removeClass("hide");
-	$(lastPage).addClass(outClass);
-	$(nowPage).addClass(inClass);
+	$(nowPage).removeClass("hide").css('z-index',100);
+	$(lastPage).addClass(outClass).css('z-index',200);
 
 
 	setTimeout(function(){
 		$(lastPage).removeClass(outClass);
 		$(lastPage).addClass("hide");
-		$(nowPage).removeClass(inClass);
 
 		isAnimating = false;
 	},600);
